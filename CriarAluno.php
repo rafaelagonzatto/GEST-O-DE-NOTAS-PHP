@@ -1,6 +1,6 @@
- <?php
+<?php
 
-require_once 'conexao.php';
+require_once __DIR__ . '/conexao.php';
 
 class Aluno_com_notas {
     private $id;
@@ -16,8 +16,7 @@ class Aluno_com_notas {
 
 
     //inicializando as propriedades
-    public function __construct($id, $nome, $email, $ra, $prova_1, $aep_1, $prova_integrada_1, $prova_2, $aep_2, $prova_integrada_2) {
-        $this->id = $id;
+    public function __construct($nome, $email, $ra, $prova_1, $aep_1, $prova_integrada_1, $prova_2, $aep_2, $prova_integrada_2) {
         $this->nome = $nome;
         $this->email = $email;
         $this->ra = $ra;
@@ -30,72 +29,59 @@ class Aluno_com_notas {
 
     }
 
-  
-    public function getId() {
-        return $this->id;
-    }
 
-    public function getNome() {
+    public function getNome() :string {
         return $this->nome;
     }
 
-    public function getEmail() {
+    public function getEmail() :string {
         return $this->email;
     }
 
-    public function getRa() {
+    public function getRa() :int {
         return $this->ra;
     }
-    public function getprova_1() {
+    public function getprova_1() :float{
       return $this->prova_1;
   }
 
-  public function getaep_1() {
+  public function getaep_1() :float{
       return $this->aep_1;
   }
 
-  public function getprova_integrada_1() {
+  public function getprova_integrada_1() :float{
       return $this->prova_integrada_1;
   }
 
-  public function getprova_2() {
+  public function getprova_2() :float{
       return $this->prova_2;
   }
 
-  public function getaep_2() {
+  public function getaep_2() :float{
       return $this->aep_2;
   }
 
-  public function getprova_integrada_2() {
+  public function getprova_integrada_2() :float{
       return $this->prova_integrada_2;
   }
 }
 
-//verificando dados
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $ra = $_POST['ra'];
-
-    $nota_prova_1 = $_POST['prova_1'];
-    $nota_eap_1 = $_POST['eap_1'];
-    $nota_prova_integrada_1 = $_POST['prova_integrada_1'];
-    
-    $nota_prova_2 = $_POST['prova_2'];
-    $nota_eap_2 = $_POST['eap_2'];
-    $nota_prova_integrada_2 = $_POST['prova_integrada_2'];
 
     //criando novo aluno
-    $aluno = new Aluno_com_notas (null, $nome, $email, $ra, $prova_1, $aep_1, $prova_integrada_1, $prova_2, $aep_2, $prova_integrada_2);
+     $aluno = new Aluno_com_notas ( 
+                    nome: $_POST['nome']
+                    email: $_POST['email']
+                    ra: $_POST['ra'], 
+                    prova_1: $_POST['prova_1'], 
+                    aep_1: $_POST['aep_1']
+                    prova_integrada_1: $_POST['prova_integrada_1'];
+                    prova_2: $_POST['prova_2'], 
+                    aep_2: $_POST['aep_2']
+                    prova_integrada_2: $_POST['prova_integrada_2'])
+
 
     // echo "Nome: " . $aluno->getNome() . "<br>";
     // echo "Email: " . $aluno->getEmail() . "<br>";
     // echo "RA: " . $aluno->getRa() . "<br>";
-}
 
-
-
-  // $db->close();
 ?>
-
-
